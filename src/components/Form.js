@@ -6,7 +6,8 @@ export default class Form extends Component {
     super(props);
 
     this.state = {
-      pilot: this.props.initialName
+      pilot: '',
+      value: ''
     }
 
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -18,7 +19,7 @@ export default class Form extends Component {
   // See form lesson for details.
   // Enter your code below:
   handleNameChange(event){
-    this.setState({pilot: event.target.value});
+    this.setState({value: event.target.value});
   }
 
   //  FORM: SUBMIT METHOD
@@ -29,7 +30,8 @@ export default class Form extends Component {
   // Enter your code below:
   handleSubmit(event){
     event.preventDefault();
-    this.setState({pilot: event.target.value});
+    this.setState({pilot: this.state.value});
+    this.setState({value: ''});
   }
 
   render(){
@@ -38,7 +40,7 @@ export default class Form extends Component {
         <form id="starwars-form" onSubmit={this.handleSubmit}>
           <label for="yourName">What is your name, pilot?</label>
 
-          <input onChange={this.handleNameChange} value={this.state.pilot} type="text" name="yourName" placeholder="Enter your name" />
+          <input onChange={this.handleNameChange} value={this.state.value} type="text" name="yourName" placeholder="Enter your name" />
 
           <input type="submit" value="Submit" />
           <PilotName name={this.state.pilot} />
